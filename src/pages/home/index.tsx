@@ -56,7 +56,8 @@ const Home: React.FC<Props> = ({
 
   useEffect(() => {
     getBreedsAsync();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Fragment>
