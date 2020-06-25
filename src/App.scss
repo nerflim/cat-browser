@@ -1,0 +1,25 @@
+@import '~bootstrap/scss/bootstrap';
+
+.btn {
+  border-radius: 0px;
+}
+
+.card,
+.card-img-top {
+  border-radius: 0px;
+}
+
+.page-loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .page-loading {
+    text-align: center;
+  }
+}
+
+.breed-loading {
+  text-align: center;
+}
