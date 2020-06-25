@@ -21,7 +21,7 @@ const Cat: React.FC<Props> = ({
 }) => {
   useEffect(() => {
     getCatAsync(match.params.id);
-  }, []);
+  });
 
   const breed: Breed = cat.breeds.length
     ? cat.breeds[0]

@@ -56,7 +56,7 @@ const Home: React.FC<Props> = ({
 
   useEffect(() => {
     getBreedsAsync();
-  }, []);
+  });
 
   return (
     <Fragment>
