@@ -6,14 +6,19 @@ import { rootSaga } from '../redux/sagas/root.saga';
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
+
+let devToolsExtension = (f: any) => f;
+
+if (
+  process.env.NODE_ENV === 'development' &&
+  (window as any).devToolsExtension
+) {
+  devToolsExtension = (window as any).__REDUX_DEVTOOLS_EXTENSION__();
+}
 // mount it on the Store
 const store = createStore(
   reducer,
-  compose(
-    applyMiddleware(sagaMiddleware),
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-      (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-  )
+  compose(applyMiddleware(sagaMiddleware), devToolsExtension)
 );
 
 // then run the saga
