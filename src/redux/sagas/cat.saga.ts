@@ -1,6 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import { getBreeds, getBreed, getCat } from '../../services/cat.service'; // app specific
 import { SagaIterator } from 'redux-saga';
+import { Breed } from '../reducers/cat.reducer';
 
 interface Payload {
   type: string;
@@ -20,10 +21,16 @@ export function* getBreedAsync({ payload }: Payload) {
   const { paging, activeBreed } = payload.payload;
   yield put({ type: 'SET_LOADING', payload: { type: 'breeds', value: true } });
 
-  const data = yield call(getBreed, { ...paging, size: 'thumb' });
+  const data = yield call(getBreed, {
+    ...paging,
+    size: 'small',
+  });
 
   const breeds = data.filter(
-    (item: any) => !activeBreed.data.includes(item.id)
+    (item: any) =>
+      !activeBreed.data
+        .map((breedItem: Breed) => breedItem.id)
+        .includes(item.id)
   );
 
   // set paging
